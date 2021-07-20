@@ -11,7 +11,7 @@ RSpec.describe 'admin shelters index page' do
     visit "/admin/shelters"
 
     expect(@shelter_2.name).to appear_before(@shelter_3.name)
-    expect(@shelter_3.name).to appear_before(@shelter_2.name)
-    expect(@shelter_1.name).to appear_before(@shelter_3.name)
+    expect(@shelter_3.name).to appear_before(@shelter_1.name)
+    expect(@shelter_2.name).to appear_before(@shelter_1.name)
   end
 end
