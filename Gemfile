@@ -45,7 +45,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'factory_bot_rails'
-  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+  gem 'faker'
 
 end
 
