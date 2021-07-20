@@ -6,7 +6,7 @@ class Pet < ApplicationRecord
   has_many :applications, through: :pet_applications, dependent: :destroy
 
   def self.partial_search(output)
-    where("name LIKE ?", "%#{output}%")
+    where("name ILIKE ?", "%#{output}%")
   end
 
   def shelter_name
