@@ -22,7 +22,7 @@ RSpec.describe PetApplication, type: :model do
       application = Application.create!(name: "Taylor Hammond", street_address: "5234 Broadway Avenue", city: "Dallas", state: "Texas", zip_code: '86754', description: "I am very good person", status: "Pending")
       pet_application = PetApplication.create!(pet: pet, application: application)
 
-      expect(PetApplication.finds_pets(pet.id, application.id)).to eq(pet)
+      expect(PetApplication.finds_pets(pet.id, application.id)).to eq([pet])
     end
   end
 end
