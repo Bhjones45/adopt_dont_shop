@@ -24,17 +24,17 @@
   <% @application.pets.each do |pet| %>
     <p><%= link_to pet.name, "pets/#{pet.id}" %></p>
   <% end %>
-  <%= @application.description %>
-
+  <strong>What can I offer this soul? </strong>-<%= @application.description %></br>
+<section>
   <% @pets.each_with_index do |pet, x|%>
-    <%= pet.name %>
-    <%= pet.updated_at %>
+    <strong style="color:DarkViolet;"><%= pet.name %></strong>
+    Updated at: <%= pet.updated_at %>
     <% if pet.adoptable %>
       <%= @pet_apps[x].status %>
     <% else %>
-      Adopted
+      <strong style="color:MediumSeaGreen;">Approved for Adoption</strong>
     <% end %>
-
+</section>
     <% if @pet_apps[x].status == "Pending" && pet.adoptable %>
       <%= form_with url: "/admin/applications/#{@application.id}", method: :patch, local: true do |f| %>
         <%= f.hidden_field :pet_id, :value => pet.id %>
