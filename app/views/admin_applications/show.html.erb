@@ -30,7 +30,7 @@
     <strong style="color:DarkViolet;"><%= pet.name %></strong>
     Updated at: <%= pet.updated_at %>
     <% if pet.adoptable %>
-      <%= @pet_apps[x].status %>
+      <strong style="color:FireBrick;"><%= @pet_apps[x].status %></strong>
     <% else %>
       <strong style="color:MediumSeaGreen;">Approved for Adoption</strong>
     <% end %>
