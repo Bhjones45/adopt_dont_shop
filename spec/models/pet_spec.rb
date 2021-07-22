@@ -24,6 +24,7 @@ RSpec.describe Pet, type: :model do
     describe '#search' do
       it 'returns partial matches' do
         expect(Pet.search("Claw")).to eq([@pet_2])
+        expect(Pet.search("cLaW")).to eq([@pet_2])
       end
     end
 
@@ -38,6 +39,19 @@ RSpec.describe Pet, type: :model do
     describe '.shelter_name' do
       it 'returns the shelter name for the given pet' do
         expect(@pet_3.shelter_name).to eq(@shelter_1.name)
+      end
+    end
+
+    describe '::toggle_adoptable' do
+      it 'changes accepted pets adoptable status' do
+        expect(@pet_1.adoptable).to be(true)
+        expect(@pet_3.adoptable).to be(false)
+
+        @pet_1.toggle_adoptable
+        @pet_3.toggle_adoptable
+
+        expect(@pet_1.adoptable).to be(false)
+        expect(@pet_3.adoptable).to be(true)
       end
     end
   end

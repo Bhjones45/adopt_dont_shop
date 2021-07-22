@@ -1,0 +1,53 @@
+<h1><%= "#{@application.name}'s Application" %></h1>
+
+<p>
+  <strong>Status:</strong>
+  <%= @application.status %>
+</p>
+<p>
+  <strong>Street Address:</strong>
+  <%= @application.street_address%>
+</p>
+<p>
+  <strong>City:</strong>
+  <%= @application.city %>
+</p>
+<p>
+  <strong>State:</strong>
+  <%= @application.state %>
+</p>
+<p>
+  <strong>Zip Code:</strong>
+  <%= @application.zip_code %>
+</p>
+
+  <% @application.pets.each do |pet| %>
+    <p><%= link_to pet.name, "pets/#{pet.id}" %></p>
+  <% end %>
+  <strong>What can I offer this soul? </strong>-<%= @application.description %></br>
+<section>
+  <% @pets.each_with_index do |pet, x|%>
+    <strong style="color:DarkViolet;"><%= pet.name %></strong>
+    Updated at: <%= pet.updated_at %>
+    <% if pet.adoptable %>
+      <strong style="color:FireBrick;"><%= @pet_apps[x].status %></strong>
+    <% else %>
+      <strong style="color:MediumSeaGreen;">Approved for Adoption</strong>
+    <% end %>
+</section>
+    <% if @pet_apps[x].status == "Pending" && pet.adoptable %>
+      <%= form_with url: "/admin/applications/#{@application.id}", method: :patch, local: true do |f| %>
+        <%= f.hidden_field :pet_id, :value => pet.id %>
+        <%= f.hidden_field :application_id, :value => @application.id %>
+        <%= f.hidden_field :status_update, :value => "Approved" %>
+        <%= f.submit "Approve" %>
+      <% end %>
+
+      <%= form_with url: "/admin/applications/#{@application.id}", method: :patch, local: true do |f| %>
+        <%= f.hidden_field :pet_id, :value => pet.id %>
+        <%= f.hidden_field :application_id, :value => @application.id %>
+        <%= f.hidden_field :status_update, :value => "Rejected" %>
+        <%= f.submit "Reject" %>
+      <% end %>
+    <% end %>
+    <% end %>
